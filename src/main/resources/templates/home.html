@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+
+    <title>Movie Review</title>
+
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link th:href="@{/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- Loading main css file -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+
+</head>
+
+
+<body ng-app="lunatechApp">
+
+
+<div id="site-content" ng-controller="movieController">
+    <header class="site-header">
+        <div class="container">
+            <a th:href="@{/}" id="branding">
+                <img th:src="@{/images/logo.png}" alt="" class="logo">
+                <div class="logo-copy">
+                    <h1 class="site-title">Lunatech</h1>
+                    <small class="site-description">Lunatech Assignment by IMDB Datasets</small>
+                </div>
+            </a>
+            <div class="main-navigation">
+                <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+                <ul class="menu">
+                    <li class="menu-item"><a th:href="@{/}">Home</a></li>
+                </ul> <!-- .menu -->
+
+                <form class="search-form">
+                    <input ng-model="searchValue" type="text" id="searchInput"
+                           placeholder="Search movie by title...">
+                    <button id="searchBtn" ng-click="searchTitle()"><i class="fa fa-search"></i></button>
+
+                </form>
+            </div> <!-- .main-navigation -->
+
+            <div class="mobile-navigation"></div>
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="container">
+            <div class="page">
+
+                <div id="movieContent" class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <figure class="movie-poster"><img ng-src="{{moviePoster}}" alt="#"></figure>
+                        </div>
+                        <div class="col-md-6">
+                            <h2 class="movie-title">{{movieTitle}}</h2>
+                            <div class="movie-summary">
+                                <p>{{summary}}</p>
+                            </div>
+                            <ul class="movie-meta">
+                                <li><strong>Rating: </strong> {{rating}}</li>
+                                <li><strong>Votes: </strong> {{voteNumber}}</li>
+                                <li><strong>Length: </strong>{{length}}</li>
+                                <li><strong>Released: </strong> {{released}}</li>
+                                <li><strong>Genre: </strong>{{genre}}</li>
+                                <li><strong>Production: </strong>{{production}}</li>
+                            </ul>
+
+                            <ul class="starring">
+                                <li><strong>Directors:</strong>{{directors}}</li>
+                                <li><strong>Writers:</strong>{{writers}}</li>
+                                <li><strong>Stars:</strong>{{stars}}</li>
+                            </ul>
+                        </div>
+                    </div> <!-- .row -->
+                    <div class="entry-content">
+                        Awards: <p>{{awards}}</p>
+                    </div>
+                </div>
+                <div id="notFoundContent" class="content" style="display: none">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <figure class="movie-poster"><img ng-src="{{moviePoster}}" alt="#"></figure>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Your search has no results. </p>
+                            <p>Try different search criteria</p>
+                        </div>
+                    </div> <!-- .row -->
+                </div>
+            </div>
+        </div> <!-- .container -->
+    </main>
+</div>
+<!-- Default snippet for navigation -->
+
+<script th:src="@{/js/lib/angular.min.js}"></script>
+<script th:src="@{/js/lib/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/app/app.js}"></script>
+<script>
+    $(document).ready(function () {
+        $("#searchBtn").click();
+    })
+</script>
+</body>
+
+</html>
